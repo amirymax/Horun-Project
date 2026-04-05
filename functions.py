@@ -1,17 +1,22 @@
-products = ["Кроссовки", "Куртка", "Рюкзак"] # товары
-prices = [10000, 12000, 8000] # цена
+products = [
+    {'name': 'Кроссовки', 'price': 10000},
+    {'name': 'Куртка', 'price': 12000},
+    {'name': 'Рюкзак', 'price': 8000}
+]
 
 def show_catalog(): # показвать каталог
     print("=== Магазин ===")
     for i in range(len(products)):
-        print(f"{i + 1}. {products[i]} — {prices[i]} сум ({discount(prices[i], 10)} со скидкой 10% для пенсионеров)")
+        product = products[i]
+        print(f"{i + 1}. {product['name']} — {product['price']} сум ({discount(product['price'], 10)} со скидкой 10% для пенсионеров)")
 
 def select_product(number): # выбрать товар
     if number < 1 or number > len(products):
         print("Такого товара нет!")
     else:
-        print(f"Ты выбрал: {products[number - 1]}")
-        print(f"Цена: {prices[number - 1]} сум")
+        product = products[number - 1]
+        print(f"Ты выбрал: {product['name']}")
+        print(f"Цена: {product['price']} сум")
 
 
 # Функция поиска товара по названию
@@ -24,21 +29,26 @@ def find_product(name):
 
 # Функция показать самый дешёвый товар
 def cheapest():
-    minimum_price = min(prices)
-    index = prices.index(minimum_price)
-    minimum_product = products[index]
-    print(f'Самый дешевый товар это {minimum_product} по цене {minimum_price}сум')
+    product = min(products, key=lambda p: p["price"])
+    print(f"Самый дешевый: {product['name']} — {product['price']} сум")
 
 # # Функция показать общую сумму всех товаров
 def total_price():
-    print(f"Общая сумма всех товаров: {sum(prices)} сум")
+    # s = 0
+    # for product in products:
+    #     s += product['price']
+        
+    total = sum(product['price'] for product in products)
+
+    print(f"Общая сумма всех товаров: {total} сум")
 
 
 def discount(price, percent):
     return price - (price * percent/100) # 10000 - 10%
 
 def add_product(name, price):
-    products.append(name)
-    prices.append(price)
+    # {'name': 'Рюкзак', 'price': 8000}
+    product = {'name': name, 'price': price}
+    products.append(product)
     print(f"Товар '{name}' добавлен!")
     show_catalog()
