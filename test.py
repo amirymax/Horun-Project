@@ -30,21 +30,81 @@
 # print(f"S2 = {s2}")
 # print(f"S3 = {s3}")
 
-numbers = [321,543,756,987,546,234]
+# numbers = [321,543,756,987,546,234]
 
-def find(num):
-    for i in numbers:
-        if i == num:
-            return "Да"
-    return "Нет"
+# def find(num):
+#     for i in numbers:
+#         if i == num:
+#             return "Да"
+#     return "Нет"
 
-n = int(input())
+# n = int(input())
 
-for i in range(1, 1000):
-    print(f'{i} найден')
-    if i == n:
-        break # - сломать
+# for i in range(1, 1000):
+#     print(f'{i} найден')
+#     if i == n:
+#         break # - сломать
 
 
 # num = int(input())
 # print(find(num))
+
+# dict() -> dictionary
+eng_to_rus = {
+    'books': 'книги', # key: value
+    'bike': 'велосипед',
+    'light': 'свет'
+}
+
+# print(eng_to_rus['bike'])
+
+person = {
+    'имя':'Horun',
+    'возраст': 12,
+    "класс": "6 B",
+    "хобби": "Играть в Футбол"
+}
+
+# print(person.values())
+# print(person.keys())
+# print(person.items())
+
+
+for key, value in person.items():
+    if key == 'класс':
+        print('класс: 7 B')
+    else:
+        print(f'{key}: {value}')
+
+
+
+# print(person['name'])
+# print(person['age'])
+# person['age'] = 13
+# print(person['age'])
+# person['city'] = 'Москва'
+# print(person['city'])
+
+# del person['city'] # delete
+# print(person)
+
+# products = [   # товары
+#     "Кроссовки",
+#     "Куртка",
+#     "Рюкзак"
+# ] 
+# prices = [10000, 12000, 8000] # цена
+
+
+products = [
+    {'name': 'Кроссовки', 'price': 10000},
+    {'name': 'Куртка', 'price': 12000},
+    {'name': 'Рюкзак', 'price': 8000}
+]
+
+# for product in products:
+#     print(f'{product['name']} - {product['price']} сум')
+
+# Словарь me
+# ном, возраст, класс, хобби
+# каждого вывеси с помощью print

@@ -4,7 +4,7 @@ prices = [10000, 12000, 8000] # цена
 def show_catalog(): # показвать каталог
     print("=== Магазин ===")
     for i in range(len(products)):
-        print(f"{i + 1}. {products[i]} — {prices[i]} сум")
+        print(f"{i + 1}. {products[i]} — {prices[i]} сум ({discount(prices[i], 10)} со скидкой 10% для пенсионеров)")
 
 def select_product(number): # выбрать товар
     if number < 1 or number > len(products):
@@ -34,10 +34,11 @@ def total_price():
     print(f"Общая сумма всех товаров: {sum(prices)} сум")
 
 
+def discount(price, percent):
+    return price - (price * percent/100) # 10000 - 10%
 
-# ### 3. ДЗ — 5 мин
-# Добавить в магазин функцию `discount(number, percent)` — принимает номер товара и процент скидки, выводит новую цену:
-# ```
-# Товар: Куртка
-# Скидка: 10%
-# Новая цена: 10800 сум
+def add_product(name, price):
+    products.append(name)
+    prices.append(price)
+    print(f"Товар '{name}' добавлен!")
+    show_catalog()

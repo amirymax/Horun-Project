@@ -1,6 +1,6 @@
 from functions import (show_catalog, select_product, 
                        find_product, cheapest,
-                       total_price)
+                       total_price, add_product)
 
 
 # Запускаем
@@ -12,6 +12,7 @@ opions = '''
 2. Поиск по названию
 3. Самый дешевый товар
 4. Общая сумма
+5. Добавить товар
 '''
 
 print(opions)
@@ -30,3 +31,9 @@ elif option == 3:
 
 elif option == 4:
     total_price()
+
+elif option == 5:
+    name = input("Введите название товара: ")
+    price = int(input('Введите цену товара: '))
+    add_product(name, price)
+    
