@@ -52,3 +52,63 @@ def add_product(name, price):
     products.append(product)
     print(f"Товар '{name}' добавлен!")
     show_catalog()
+
+def delete_product(number):
+    if number < 1 or number > len(products):
+        print('Такого товара нет')
+    else:
+        product = products.pop(number-1)
+        print(f'Товар {product['name']} удалён')
+        show_catalog()
+
+cart = []
+
+def add_to_cart(number):
+    if number < 1 or number > len(products):
+        print('Такого товара нет')
+    
+    else:
+        product = products[number - 1]
+        cart.append(product)
+        print(f"'{product['name']}' добавлен в корзину")
+
+def show_cart():
+    if len(cart) == 0:
+        print('Корзина пуста!')
+        return 0
+    else:
+        print("=== Корзина ===")
+        total = 0
+        for i in range(len(cart)):
+            product = cart[i]
+            print(f"{i + 1}. {product['name']} - {product['price']} сум")
+            total += product['price']
+        print(f'Итого {total} сум')
+        return 1
+    
+
+def remove_from_cart(number):
+    if len(cart) == 0:
+        print('Корзина пуста!')
+    
+    elif number < 1 or number > len(products):
+        print('Такого товара нет')
+    
+    else:
+        product = cart.pop(number - 1)
+        print(f"'{product['name']}' удалён из корзины!")
+        show_cart()
+
+# ДЗ
+
+def clear_cart():
+    #  очистить корзину
+    ...
+def count_cart():
+    # количество товаров в корзину
+    ...
+def most_expensive():
+    # самый дорогой товар в магазине
+    ...
+
+

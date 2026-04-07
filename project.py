@@ -1,39 +1,67 @@
-from functions import (show_catalog, select_product, 
+from functions import (show_catalog, select_product,
                        find_product, cheapest,
-                       total_price, add_product)
+                       total_price, add_product,
+                       delete_product, add_to_cart, 
+                       show_cart, remove_from_cart)
 
+from time import sleep
 
-# Запускаем
 show_catalog()
 
-opions = '''
+options = '''
 === Опции ===
 1. Поиск по номеру
 2. Поиск по названию
 3. Самый дешевый товар
 4. Общая сумма
 5. Добавить товар
+6. Удалить товар
+7. Добавить в корзину
+8. Показать корзину
+9. Удалить из корзины
 '''
 
-print(opions)
-option = int(input("Введите номер опции: "))
+while True:
+    print(options)
+    option = int(input("Введите номер опции: "))
 
-if option == 1:
-    number = int(input("Введи номер: "))
-    select_product(number)
+    if option == 1:
+        number = int(input("Введи номер: "))
+        select_product(number)
+    elif option == 2:
+        name = input("Введите название товара: ")
+        print(find_product(name))
+    elif option == 3:
+        cheapest()
+    elif option == 4:
+        total_price()
 
-elif option == 2:
-    name = input("Введите название товара (как в списке): ")
-    print(find_product(name))
+    elif option == 5:
+        name = input("Введите название товара: ")
+        price = int(input("Введите цену: "))
+        add_product(name, price)
 
-elif option == 3:
-    cheapest()
+    elif option == 6:
+        show_catalog()
+        number = int(input("Введи номер товара для удаления: "))
+        delete_product(number)
 
-elif option == 4:
-    total_price()
 
-elif option == 5:
-    name = input("Введите название товара: ")
-    price = int(input('Введите цену товара: '))
-    add_product(name, price)
+    elif option == 7:
+        show_catalog()
+        number = int(input("Введи номер товара: "))
+        add_to_cart(number)
+
+    elif option == 8:
+        show_cart()
     
+    elif option == 9:
+        cart = show_cart()
+        if cart == 1:
+            number = int(input("Введи номер товара в корзине: "))
+            remove_from_cart(number)
+        # else:
+        #     sleep(3)
+        #     continue
+    
+    sleep(3)
