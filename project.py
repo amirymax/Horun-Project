@@ -2,9 +2,14 @@ from functions import (show_catalog, select_product,
                        find_product, cheapest,
                        total_price, add_product,
                        delete_product, add_to_cart, 
-                       show_cart, remove_from_cart)
+                       show_cart, remove_from_cart,
+                       clear_cart, count_cart,
+                       most_expensive, load_products,
+                       save_products)
 
 from time import sleep
+
+load_products()
 
 show_catalog()
 
@@ -19,6 +24,9 @@ options = '''
 7. Добавить в корзину
 8. Показать корзину
 9. Удалить из корзины
+10. Очистить корзину
+11. Количество товаров в корзине
+12. Самый дорогой товар в магазине
 '''
 
 while True:
@@ -40,11 +48,13 @@ while True:
         name = input("Введите название товара: ")
         price = int(input("Введите цену: "))
         add_product(name, price)
+        save_products()
 
     elif option == 6:
         show_catalog()
         number = int(input("Введи номер товара для удаления: "))
         delete_product(number)
+        save_products()
 
 
     elif option == 7:
@@ -63,5 +73,14 @@ while True:
         # else:
         #     sleep(3)
         #     continue
+    elif option == 10:
+        clear_cart()
+        print('Корзина была очищена')
+    
+    elif option == 11:
+        print(f'В корзине {count_cart()} товаров')
+    
+    elif option == 12:
+        most_expensive()
     
     sleep(3)

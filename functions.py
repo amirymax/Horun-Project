@@ -1,8 +1,4 @@
-products = [
-    {'name': 'Кроссовки', 'price': 10000},
-    {'name': 'Куртка', 'price': 12000},
-    {'name': 'Рюкзак', 'price': 8000}
-]
+products = []
 
 def show_catalog(): # показвать каталог
     print("=== Магазин ===")
@@ -103,12 +99,34 @@ def remove_from_cart(number):
 
 def clear_cart():
     #  очистить корзину
-    ...
+    cart.clear()
+
 def count_cart():
-    # количество товаров в корзину
-    ...
+    # количество товаров в корзине
+    return len(cart)
+
 def most_expensive():
     # самый дорогой товар в магазине
-    ...
+    product = max(products, key=lambda p: p["price"])
+    print(f"Самый дорогой товар: {product['name']} — {product['price']} сум")
+
+
+# Сохранить товары в файл
+def save_products():
+    with open("products.txt", "w", encoding='utf8') as file:
+        for product in products:
+            file.write(f"{product['name']},{product['price']}\n")
+    print("Товары сохранены!")
+
+# Загрузить товары из файла
+def load_products():
+    try:
+        with open("products.txt", "r", encoding='utf8') as file:
+            for line in file:
+                parts = line.strip().split(",")
+                products.append({"name": parts[0], "price": int(parts[1])})
+        print("Товары загружены!")
+    except FileNotFoundError:
+        print("Файл не найден, начинаем с пустого списка")
 
 
