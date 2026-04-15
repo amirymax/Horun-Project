@@ -5,7 +5,7 @@ from functions import (show_catalog, select_product,
                        show_cart, remove_from_cart,
                        clear_cart, count_cart,
                        most_expensive, load_products,
-                       save_products)
+                       save_products, edit_price)
 
 from time import sleep
 
@@ -27,6 +27,7 @@ options = '''
 10. Очистить корзину
 11. Количество товаров в корзине
 12. Самый дорогой товар в магазине
+13. Изменить цену
 '''
 
 while True:
@@ -82,5 +83,13 @@ while True:
     
     elif option == 12:
         most_expensive()
+    
+    elif option == 13:
+        show_catalog()
+        number = int(input("Введите номер товара: "))
+        new_price = int(input("Введите новую цену: "))
+
+        edit_price(number, new_price)
+        save_products()
     
     sleep(3)

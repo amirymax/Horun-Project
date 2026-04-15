@@ -1,3 +1,4 @@
+import json
 products = []
 
 def show_catalog(): # показвать каталог
@@ -43,6 +44,7 @@ def discount(price, percent):
     return price - (price * percent/100) # 10000 - 10%
 
 def add_product(name, price):
+
     # {'name': 'Рюкзак', 'price': 8000}
     product = {'name': name, 'price': price}
     products.append(product)
@@ -113,20 +115,22 @@ def most_expensive():
 
 # Сохранить товары в файл
 def save_products():
-    with open("products.txt", "w", encoding='utf8') as file:
-        for product in products:
-            file.write(f"{product['name']},{product['price']}\n")
+    with open("products.json", "w", encoding='utf8') as file:
+        json.dump(products, file, ensure_ascii=False, indent=2)
     print("Товары сохранены!")
 
 # Загрузить товары из файла
 def load_products():
+    global products
     try:
-        with open("products.txt", "r", encoding='utf8') as file:
-            for line in file:
-                parts = line.strip().split(",")
-                products.append({"name": parts[0], "price": int(parts[1])})
+        with open("products.json", "r", encoding='utf8') as file:
+            products = json.load(file)
+
         print("Товары загружены!")
     except FileNotFoundError:
         print("Файл не найден, начинаем с пустого списка")
 
 
+def edit_price(number, new_price):
+    products[number-1]['price'] = new_price
+    print(f'Цена товара {products[number-1]['name']} изменена на {new_price}')
